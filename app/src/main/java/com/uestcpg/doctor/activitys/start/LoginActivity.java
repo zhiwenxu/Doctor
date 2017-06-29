@@ -21,6 +21,7 @@ import com.uestcpg.doctor.activitys.main.MainActivity;
 import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.app.BaseActivity;
 import com.uestcpg.doctor.beans.LoginBean;
+import com.uestcpg.doctor.beans.RCBean;
 import com.uestcpg.doctor.network.APPUrl;
 import com.uestcpg.doctor.network.GsonHelper;
 import com.uestcpg.doctor.network.OkHttpCallBack;
@@ -81,9 +82,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             public void onRespone(String result) {
                 LoginBean bean = GsonHelper.getGson().fromJson(result,LoginBean.class);
                 if(StringUtil.isTrue(bean.getSuccess())){
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    AppStatus.setToken(bean.getToken());
+                    getRCToken(bean.getToken());
                 }
                 else{
                     T.show(LoginActivity.this,getString(R.string.account_pwd_null_tip));
@@ -93,6 +93,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             @Override
             public void onError(Request request, Exception e) {
 
+            }
+        });
+    }
+
+    private void getRCToken(String token){
+        OkHttpManager.getInstance()._getAsyn(APPUrl.GET_RCTOKEN_URL, token, new OkHttpCallBack() {
+            @Override
+            public void onRespone(String result) {
+                RCBean bean = GsonHelper.getGson().fromJson(result,RCBean.class);
+                if(StringUtil.isTrue(bean.getSuccess())){
+                    AppStatus.setrCToken(bean.getRCToken());
+                    connect(bean.getRCToken());
+                }else{
+                    T.show(LoginActivity.this,bean.getMessage());
+                }
+            }
+            @Override
+            public void onError(Request request, Exception e) {
+                T.show(LoginActivity.this,getString(R.string.get_RC_error));
             }
         });
     }

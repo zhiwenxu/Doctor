@@ -20,6 +20,7 @@
         <activity android:name=".activitys.start.RegisterActivity">
         </activity>
         <activity android:name=".activitys.main.MainActivity"></activity>
+        <activity android:name=".activitys.main.SickInfoActivity"/>
         <activity android:name=".activitys.main.ConversationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

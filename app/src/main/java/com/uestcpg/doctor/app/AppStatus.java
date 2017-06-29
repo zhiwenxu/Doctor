@@ -8,7 +8,7 @@ public class AppStatus {
     private static String userid;
     private static String token;
     private static String username;
-    private static String tagetId;
+    private static String rCToken;
 
     public static void setUserId(String id){
         userid = id;
@@ -22,9 +22,6 @@ public class AppStatus {
         username = name;
     }
 
-    public static void setTagetId(String id){
-        tagetId = id;
-    }
 
     public static String getUserId(){
         return userid;
@@ -35,7 +32,12 @@ public class AppStatus {
     public static String getUsername(){
         return username;
     }
-    public static String getTagetId(){
-        return tagetId;
+
+    public static String getrCToken() {
+        return rCToken;
+    }
+
+    public static void setrCToken(String rCToken) {
+        AppStatus.rCToken = rCToken;
     }
 }
