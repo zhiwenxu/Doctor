@@ -38,6 +38,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     EditText rPasswordEdit;
     @InjectView(R.id.register_phone)
     EditText rPhoneEdit;
+    @InjectView(R.id.register_appelation)
+    EditText rAppelationEdit;
+    @InjectView(R.id.register_major)
+    EditText rMajorEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +59,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         String pwd = rPasswordEdit.getText().toString();
         String phone = rPhoneEdit.getText().toString();
         String name = rNameEdit.getText().toString();
+        String appelation = rAppelationEdit.getText().toString();
+        String major = rMajorEdit.getText().toString();
 
         if(StringUtil.isEmpty(phone)){
             T.show(this,getString(R.string.account_null_tip));
@@ -66,6 +72,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
         if(StringUtil.isEmpty(name)){
             T.show(this,getString(R.string.name_null_tip));
+            return;
+        }
+        if(StringUtil.isEmpty(appelation)){
+            T.show(this,getString(R.string.appelation_null_tip));
+            return;
+        }
+        if(StringUtil.isEmpty(major)){
+            T.show(this,getString(R.string.major_null_tip));
             return;
         }
         String pwdMD5 = MD5Util.stringMD5(pwd);

@@ -49,6 +49,30 @@
         android:paddingRight="5dp"
         android:textSize="14sp"
         android:hint="@string/name"/>
+    <EditText
+        android:id="@+id/register_appelation"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/app_edit_bg"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="14sp"
+        android:hint="@string/appelation"/>
+    <EditText
+        android:id="@+id/register_major"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/app_edit_bg"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="14sp"
+        android:hint="@string/major"/>
     <Button
         android:id="@+id/register_btn"
         android:layout_width="match_parent"

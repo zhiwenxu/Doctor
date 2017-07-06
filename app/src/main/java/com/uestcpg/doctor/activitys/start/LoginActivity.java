@@ -87,6 +87,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 if(StringUtil.isTrue(bean.getSuccess())){
                     AppStatus.setToken(bean.getToken());
                     AppStatus.setrCToken(bean.getRCToken());
+                    AppStatus.setUserId(phone);
                 }
                 else{
                     T.show(LoginActivity.this,getString(R.string.account_pwd_null_tip));
