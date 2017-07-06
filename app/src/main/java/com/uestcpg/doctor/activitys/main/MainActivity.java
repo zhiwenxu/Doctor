@@ -66,6 +66,7 @@ public class MainActivity extends BaseFragmentActivity implements ViewPager.OnPa
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
