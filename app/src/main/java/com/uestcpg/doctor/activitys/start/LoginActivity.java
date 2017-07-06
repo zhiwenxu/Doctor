@@ -26,6 +26,7 @@ import com.uestcpg.doctor.network.APPUrl;
 import com.uestcpg.doctor.network.GsonHelper;
 import com.uestcpg.doctor.network.OkHttpCallBack;
 import com.uestcpg.doctor.network.OkHttpManager;
+import com.uestcpg.doctor.network.SPUtil;
 import com.uestcpg.doctor.utils.MD5Util;
 import com.uestcpg.doctor.utils.ParamUtil;
 import com.uestcpg.doctor.utils.StringUtil;
@@ -40,7 +41,6 @@ import io.rong.imlib.RongIMClient;
  * Created by xuzhiwen on 2017/6/14.
  * 登录页面
  */
-
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     @InjectView(R.id.login_btn)
@@ -60,6 +60,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
     private void init(){
         ButterKnife.inject(this);
+        mPhoneEdit.setText(SPUtil.getUsername(this));
+        mPasswordEdit.setText(SPUtil.getPassWord(this));
         mLoginBtn.setOnClickListener(this);
         mLoginRegisterBtn.setOnClickListener(this);
     }
@@ -84,6 +86,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 LoginBean bean = GsonHelper.getGson().fromJson(result,LoginBean.class);
                 if(StringUtil.isTrue(bean.getSuccess())){
                     AppStatus.setToken(bean.getToken());
+                    AppStatus.setrCToken(bean.getRCToken());
                 }
                 else{
                     T.show(LoginActivity.this,getString(R.string.account_pwd_null_tip));
@@ -114,11 +117,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
              */
             @Override
             public void onSuccess(String userid) {
+                SPUtil.setUsername(LoginActivity.this,mPhoneEdit.getText().toString().trim());
+                SPUtil.setPassword(LoginActivity.this,mPasswordEdit.getText().toString().trim());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
-
             /**
              * 连接融云失败
              * @param errorCode 错误码，可到官网 查看错误码对应的注释
@@ -131,8 +135,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void Register(){
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
     @Override
     public void onClick(View v) {
