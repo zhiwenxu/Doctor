@@ -77,41 +77,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         String pwdMD5 = MD5Util.stringMD5(pwd);
         ParamUtil.put("phone",phone);
         ParamUtil.put("password",pwdMD5);
+        ParamUtil.put("doctor","true");
         OkHttpManager.getInstance()._postAsyn(APPUrl.LOGIN_URL,ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
                 LoginBean bean = GsonHelper.getGson().fromJson(result,LoginBean.class);
                 if(StringUtil.isTrue(bean.getSuccess())){
                     AppStatus.setToken(bean.getToken());
-                    getRCToken(bean.getToken());
                 }
                 else{
                     T.show(LoginActivity.this,getString(R.string.account_pwd_null_tip));
                 }
-                connect(bean.getToken());
+                connect(bean.getRCToken());
             }
             @Override
             public void onError(Request request, Exception e) {
 
-            }
-        });
-    }
-
-    private void getRCToken(String token){
-        OkHttpManager.getInstance()._getAsyn(APPUrl.GET_RCTOKEN_URL, token, new OkHttpCallBack() {
-            @Override
-            public void onRespone(String result) {
-                RCBean bean = GsonHelper.getGson().fromJson(result,RCBean.class);
-                if(StringUtil.isTrue(bean.getSuccess())){
-                    AppStatus.setrCToken(bean.getRCToken());
-                    connect(bean.getRCToken());
-                }else{
-                    T.show(LoginActivity.this,bean.getMessage());
-                }
-            }
-            @Override
-            public void onError(Request request, Exception e) {
-                T.show(LoginActivity.this,getString(R.string.get_RC_error));
             }
         });
     }
