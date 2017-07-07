@@ -6,12 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.uestcpg.doctor.R;
 import com.uestcpg.doctor.app.AppStatus;
+import com.uestcpg.doctor.beans.DoctorInfoBean;
 import com.uestcpg.doctor.network.APPUrl;
+import com.uestcpg.doctor.network.GsonHelper;
 import com.uestcpg.doctor.network.OkHttpCallBack;
 import com.uestcpg.doctor.network.OkHttpManager;
 import com.uestcpg.doctor.utils.ParamUtil;
@@ -28,14 +31,19 @@ import butterknife.InjectView;
 
 public class MeFragment extends Fragment {
 
-//    @InjectView(R.id.me_icon)
-//    SimpleDraweeView mSimpleDraweeView;
+    @InjectView(R.id.me_icon)
+    SimpleDraweeView mSimpleDraweeView;
+    @InjectView(R.id.me_name)
+    TextView me_Name;
+    @InjectView(R.id.me_appellation)
+    TextView me_Appellation;
+    @InjectView(R.id.me_major)
+    TextView me_Major;
 
     public static MeFragment getInstance(){
         return new MeFragment();
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_me,null);
@@ -63,13 +71,20 @@ public class MeFragment extends Fragment {
         OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTORINFO_URL, ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
+                DoctorInfoBean bean = GsonHelper.getGson().fromJson(result,DoctorInfoBean.class);
+
+                if(StringUtil.isTrue(bean.getSuccess())){
+                    bean.getIconUrl();
 
                 }
                 else{
-
+                    T.show(MeFragment.this,getString(R.string.account_pwd_null_tip));
                 }
-                connect(bean.getRCToken());
+
             }
+
+
+
             @Override
             public void onError(Request request, Exception e) {
 

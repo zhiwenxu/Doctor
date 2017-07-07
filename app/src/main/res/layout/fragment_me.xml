@@ -31,10 +31,22 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"/>
         <TextView
+            android:id="@+id/me_appellation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:text="二级专家"
+            android:layout_toRightOf="@id/me_icon"
+            android:layout_below="@id/me_name"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/text_color_gray"/>
+        <TextView
+            android:id="@+id/me_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="儿科"
             android:layout_toRightOf="@id/me_icon"
             android:layout_below="@id/me_name"
             android:layout_marginTop="5dp"

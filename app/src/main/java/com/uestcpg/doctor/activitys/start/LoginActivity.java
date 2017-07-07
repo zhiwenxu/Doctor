@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
     private void checkLogin(){
         String pwd = mPasswordEdit.getText().toString();
-        String phone = mPhoneEdit.getText().toString();
+        final String phone = mPhoneEdit.getText().toString();
         if(StringUtil.isEmpty(phone)){
             T.show(this,getString(R.string.account_null_tip));
             return;
