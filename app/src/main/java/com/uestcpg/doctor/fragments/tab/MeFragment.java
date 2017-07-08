@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.R;
 import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.beans.DoctorInfoBean;
@@ -75,10 +76,14 @@ public class MeFragment extends Fragment {
 
                 if(StringUtil.isTrue(bean.getSuccess())){
                     bean.getIconUrl();
-
+                    AppStatus.setUsername(bean.getName());
+                    mSimpleDraweeView.setImageURI(bean.getIconUrl());
+                    me_Name.setText(bean.getName());
+                    me_Major.setText(bean.getMajor());
+                    me_Appellation.setText(bean.getAppllation());
                 }
                 else{
-                    T.show(MeFragment.this,getString(R.string.account_pwd_null_tip));
+                    T.show(getActivity(),bean.getMessage());
                 }
 
             }
