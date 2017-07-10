@@ -38,8 +38,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     EditText rPasswordEdit;
     @InjectView(R.id.register_phone)
     EditText rPhoneEdit;
-    @InjectView(R.id.register_appelation)
-    EditText rAppelationEdit;
+    @InjectView(R.id.register_appellation)
+    EditText rappellationEdit;
     @InjectView(R.id.register_major)
     EditText rMajorEdit;
 
@@ -60,7 +60,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         String pwd = rPasswordEdit.getText().toString();
         String phone = rPhoneEdit.getText().toString();
         String name = rNameEdit.getText().toString();
-        String appelation = rAppelationEdit.getText().toString();
+        String appellation = rappellationEdit.getText().toString();
         String major = rMajorEdit.getText().toString();
 
         if(StringUtil.isEmpty(phone)){
@@ -75,8 +75,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             T.show(this,getString(R.string.name_null_tip));
             return;
         }
-        if(StringUtil.isEmpty(appelation)){
-            T.show(this,getString(R.string.appelation_null_tip));
+        if(StringUtil.isEmpty(appellation)){
+            T.show(this,getString(R.string.appellation_null_tip));
             return;
         }
         if(StringUtil.isEmpty(major)){
@@ -88,7 +88,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         ParamUtil.put("password",pwdMD5);
         ParamUtil.put("name",name);
         ParamUtil.put("major",major);
-        ParamUtil.put("appelation",appelation);
+        ParamUtil.put("appellation",appellation);
         ParamUtil.put("doctor","true");
 
         OkHttpManager.getInstance()._postAsyn(APPUrl.REGISTER_URL,ParamUtil.getParams()

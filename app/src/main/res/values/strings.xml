@@ -3,7 +3,7 @@
     <string name="name">姓名</string>
     <string name="phone">手机号</string>
     <string name="password">密码</string>
-    <string name="appelation">职称</string>
+    <string name="appellation">职称</string>
     <string name="major">科室</string>
     <string name="forget_password">忘记密码</string>
     <string name="login_now">立即登录</string>
@@ -13,7 +13,7 @@
     <string name="confirm_password">确认密码</string>
 
     <string name="home_tab_sick">病人</string>
-    <string name="appelation_null_tip">职称不能为空</string>
+    <string name="appellation_null_tip">职称不能为空</string>
     <string name="major_null_tip">科室不能为空</string>
     <string name="token_null_tip">token不能为空</string>
     <string name="phone_null_tip">电话不能为空</string>

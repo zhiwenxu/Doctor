@@ -57,7 +57,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener{
 
         ParamUtil.put("token", AppStatus.getToken());
         ParamUtil.put("phone",AppStatus.getUserId());
-        OkHttpManager.getInstance()._postAsyn(APPUrl.GET_OREDER_URL,ParamUtil.getParams(), new OkHttpCallBack() {
+        OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTOR_ORDER_URL,ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
                 OrderBean bean = GsonHelper.getGson().fromJson(result,OrderBean.class);

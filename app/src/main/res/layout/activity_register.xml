@@ -50,7 +50,7 @@
         android:textSize="14sp"
         android:hint="@string/name"/>
     <EditText
-        android:id="@+id/register_appelation"
+        android:id="@+id/register_appellation"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@drawable/app_edit_bg"
@@ -60,7 +60,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:textSize="14sp"
-        android:hint="@string/appelation"/>
+        android:hint="@string/appellation"/>
     <EditText
         android:id="@+id/register_major"
         android:layout_width="match_parent"
