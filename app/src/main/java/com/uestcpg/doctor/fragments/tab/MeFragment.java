@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTORINFO_URL, ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
+                Log.e("re",result);
                 DoctorInfoBean bean = GsonHelper.getGson().fromJson(result,DoctorInfoBean.class);
 
                 if(StringUtil.isTrue(bean.getSuccess())){
