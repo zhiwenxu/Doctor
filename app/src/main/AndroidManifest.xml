@@ -26,7 +26,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:host="com.uestcpg.remotedoctor"
+                    android:host="com.uestcpg.doctor"
                     android:pathPrefix="/conversation/"
                     android:scheme="rong" />
             </intent-filter>
@@ -42,7 +42,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                    android:host="com.uestcpg.remotedoctor"
+                    android:host="com.uestcpg.doctor"
                     android:pathPrefix="/subconversationlist"
                     android:scheme="rong" />
             </intent-filter>
@@ -50,7 +50,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.uestcpg.remotedoctor.FileProvider"
+            android:authorities="com.uestcpg.doctor.FileProvider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data

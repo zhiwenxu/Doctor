@@ -1,17 +1,20 @@
 package com.uestcpg.doctor.fragments.tab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.R;
+import com.uestcpg.doctor.activitys.main.OrderActivity;
 import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.beans.DoctorInfoBean;
 import com.uestcpg.doctor.network.APPUrl;
@@ -30,7 +33,7 @@ import butterknife.InjectView;
  *
  */
 
-public class MeFragment extends Fragment {
+public class MeFragment extends Fragment implements View.OnClickListener{
 
     @InjectView(R.id.me_icon)
     SimpleDraweeView mSimpleDraweeView;
@@ -40,31 +43,40 @@ public class MeFragment extends Fragment {
     TextView me_Appellation;
     @InjectView(R.id.me_major)
     TextView me_Major;
+    @InjectView(R.id.doctor_info_layout)
+    RelativeLayout mDoctorInfoLayout;
+    @InjectView(R.id.order_layout)
+    RelativeLayout mOrderLayout;
 
     public static MeFragment getInstance(){
         return new MeFragment();
     }
 
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_me,null);
-//        ButterKnife.inject(this,contentView);
+      ButterKnife.inject(this,contentView);
         init();
         return contentView;
     }
-    private void init(){
-//        mSimpleDraweeView.setImageURI("");
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        GetDoctorInfo();
     }
 
     private void GetDoctorInfo(){
         String token = AppStatus.getToken();
         String phone = AppStatus.getUserId();
         if(StringUtil.isEmpty(token)){
-            T.show(this,getString(R.string.account_null_tip));
+            T.show(getActivity(),getString(R.string.account_null_tip));
             return;
         }
         if(StringUtil.isEmpty(phone)){
-            T.show(this,getString(R.string.phone_null_tip));
+            T.show(getActivity(),getString(R.string.phone_null_tip));
             return;
         }
         ParamUtil.put("token",token);
@@ -95,6 +107,29 @@ public class MeFragment extends Fragment {
 
             }
         });
+    }
+
+    private void init(){
+        mDoctorInfoLayout.setOnClickListener(this);
+        mOrderLayout.setOnClickListener(this);
+    }
+
+//    private void ChangeInfomation(){
+//        Intent intent = new Intent(getActivity(), MeFragmentChange.class);
+//        intent.putExtra("name",mName.getText().toString());
+//        intent.putExtra("description",mDescription.getText().toString());
+//        startActivity(intent);
+//    }
+
+    @Override
+    public void onClick(View v) {
+//        if(v == mDoctorInfoLayout){
+//            ChangeInfomation();
+//        }
+        if(v == mOrderLayout){
+            Intent intent = new Intent(getActivity(), OrderActivity.class);
+            startActivity(intent);
+        }
     }
 
 }

@@ -43,6 +43,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @InjectView(R.id.register_major)
     EditText rMajorEdit;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +87,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         ParamUtil.put("phone",phone);
         ParamUtil.put("password",pwdMD5);
         ParamUtil.put("name",name);
+        ParamUtil.put("major",major);
+        ParamUtil.put("appelation",appelation);
         ParamUtil.put("doctor","true");
 
         OkHttpManager.getInstance()._postAsyn(APPUrl.REGISTER_URL,ParamUtil.getParams()
