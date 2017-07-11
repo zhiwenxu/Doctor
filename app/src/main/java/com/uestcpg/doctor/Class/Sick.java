@@ -6,8 +6,10 @@ package com.uestcpg.doctor.Class;
 
 public class Sick {
 
+    private String phone;
     private String name;
-    private String detail;
+    private String iconurl;
+    private String description;
 
     public String getName() {
         return name;
@@ -17,11 +19,27 @@ public class Sick {
         this.name = name;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getIconurl() {
+        return iconurl;
+    }
+
+    public void setIconurl(String iconurl) {
+        this.iconurl = iconurl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -30,8 +30,7 @@ public class SickListAdapter extends BaseAdapter{
 
     public SickListAdapter(Context context, List<Sick> datas) {
         this.mContext = context;
-        sicks = new ArrayList<>();
-        sicks.addAll(datas);
+        this.sicks = datas;
     }
     //添加所有数据
     public void addDatas(List<Sick> datas){
@@ -66,27 +65,21 @@ public class SickListAdapter extends BaseAdapter{
         if(convertView == null){
             convertView = LayoutInflater.from(mContext).inflate(R.layout.sick_list_item,null);
             holder = new ViewHolder();
-            holder.iconImage = (SimpleDraweeView)convertView.findViewById(R.id.doctor_icon);
-            holder.nameTv = (TextView)convertView.findViewById(R.id.doctor_name);
-            holder.chatTv = (TextView)convertView.findViewById(R.id.doctor_chat_btn);
+            holder.iconImage = (SimpleDraweeView)convertView.findViewById(R.id.sick_icon);
+            holder.nameTv = (TextView)convertView.findViewById(R.id.sick_name);
+            holder.detailTv = (TextView)convertView.findViewById(R.id.sick_detail);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
-//        holder.iconImage.setImageURI(sick.getPhoto());
+        holder.iconImage.setImageURI(sick.getIconurl());
         holder.nameTv.setText(sick.getName());
-        holder.chatTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                RongIM.getInstance().startPrivateChat(mContext,sick.getPhone(), AppStatus.getUsername());
-            }
-        });
+        holder.detailTv.setText(sick.getDescription());
         return convertView;
     }
     private class ViewHolder{
         SimpleDraweeView iconImage;
         TextView nameTv;
-        TextView chatTv;
         TextView detailTv;
     }
 }

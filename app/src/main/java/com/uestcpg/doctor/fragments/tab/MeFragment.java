@@ -85,7 +85,6 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTORINFO_URL, ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
-                Log.e("re",result);
                 DoctorInfoBean bean = GsonHelper.getGson().fromJson(result,DoctorInfoBean.class);
 
                 if(StringUtil.isTrue(bean.getSuccess())){

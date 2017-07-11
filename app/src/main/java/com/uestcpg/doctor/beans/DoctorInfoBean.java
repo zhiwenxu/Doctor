@@ -9,7 +9,7 @@ public class DoctorInfoBean {
     private String Message;
     private String Name;
     private String IconUrl;
-    private String Appllation;
+    private String Appellation;
     private String Major;
 
     public String getSuccess() {
@@ -45,11 +45,11 @@ public class DoctorInfoBean {
     }
 
     public String getAppllation() {
-        return Appllation;
+        return Appellation;
     }
 
     public void setAppllation(String appllation) {
-        Appllation = appllation;
+        Appellation = appllation;
     }
 
     public String getMajor() {

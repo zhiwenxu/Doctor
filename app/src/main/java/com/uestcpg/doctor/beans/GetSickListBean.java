@@ -1,26 +1,16 @@
 package com.uestcpg.doctor.beans;
 
-import com.uestcpg.doctor.Class.Order;
+import com.uestcpg.doctor.Class.Sick;
 
 import java.util.List;
 
 /**
- * Created by dmsoft on 2017/7/6.
+ * Created by dmsoft on 2017/7/8.
  */
-
-public class OrderBean {
-
-    private List<Order> doctorOrders;
+public class GetSickListBean {
     private String Success;
     private String Message;
-
-    public List<Order> getDoctorOrders() {
-        return doctorOrders;
-    }
-
-    public void setDoctorOrders(List<Order> doctorOrders) {
-        this.doctorOrders = doctorOrders;
-    }
+    private List<Sick> sicks;
 
     public String getSuccess() {
         return Success;
@@ -36,5 +26,13 @@ public class OrderBean {
 
     public void setMessage(String message) {
         Message = message;
+    }
+
+    public List<Sick> getSicks() {
+        return sicks;
+    }
+
+    public void setSicks(List<Sick> sicks) {
+        this.sicks = sicks;
     }
 }

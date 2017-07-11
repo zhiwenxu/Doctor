@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/doctor_icon"
+            android:id="@+id/sick_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:fadeDuration="1000"
@@ -16,40 +16,27 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"/>
         <TextView
-            android:id="@+id/doctor_name"
+            android:id="@+id/sick_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="刘雯"
             android:textColor="@color/app_black"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/doctor_icon"
+            android:layout_toRightOf="@id/sick_icon"
             android:layout_marginTop="5dp"/>
 
         <TextView
-            android:id="@+id/doctor_chat_btn"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:text="@string/app_ask"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/green_btn_bg"
-            android:textColor="@color/app_white"/>
-        <TextView
-            android:id="@+id/doctor_major"
+            android:id="@+id/sick_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:text="近视一期有待观察患者"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toRightOf="@id/doctor_icon"
-            android:layout_toLeftOf="@id/doctor_chat_btn"
+            android:layout_toRightOf="@id/sick_icon"
             android:layout_marginTop="5dp"
-            android:layout_alignBottom="@id/doctor_icon"/>
+            android:layout_alignBottom="@id/sick_icon"/>
 
     </RelativeLayout>
 </LinearLayout>

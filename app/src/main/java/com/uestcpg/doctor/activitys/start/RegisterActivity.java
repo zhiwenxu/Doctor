@@ -29,7 +29,6 @@ import butterknife.InjectView;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener{
 
-
     @InjectView(R.id.register_btn)
     Button rRegisterBtn;
     @InjectView(R.id.register_name)

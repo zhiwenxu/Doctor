@@ -62,7 +62,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener{
             public void onRespone(String result) {
                 OrderBean bean = GsonHelper.getGson().fromJson(result,OrderBean.class);
                 if(StringUtil.isTrue(bean.getSuccess())){
-                    mOrderListAdapter.addDatas(bean.getOrders());
+                    mOrderListAdapter.addDatas(bean.getDoctorOrders());
                 }else{
                     T.show(OrderActivity.this,bean.getMessage());
                 }

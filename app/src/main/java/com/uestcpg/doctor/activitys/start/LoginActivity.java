@@ -31,6 +31,7 @@ import com.uestcpg.doctor.utils.MD5Util;
 import com.uestcpg.doctor.utils.ParamUtil;
 import com.uestcpg.doctor.utils.StringUtil;
 import com.uestcpg.doctor.utils.T;
+import com.uestcpg.doctor.views.LoadingDialog;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -52,18 +53,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     @InjectView(R.id.login_password)
     EditText mPasswordEdit;
 
+    private LoadingDialog dialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(dialog.isShowing()){
+            dialog.dismiss();
+        }
+    }
+
     private void init(){
         ButterKnife.inject(this);
+        dialog = new LoadingDialog(this);
         mPhoneEdit.setText(SPUtil.getUsername(this));
         mPasswordEdit.setText(SPUtil.getPassWord(this));
         mLoginBtn.setOnClickListener(this);
         mLoginRegisterBtn.setOnClickListener(this);
+        dialog.setTip(getString(R.string.loginning_tip));
     }
     private void checkLogin(){
         String pwd = mPasswordEdit.getText().toString();
@@ -76,6 +89,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             T.show(this,getString(R.string.pwd_null_tip));
             return;
         }
+        dialog.show();
         String pwdMD5 = MD5Util.stringMD5(pwd);
         ParamUtil.put("phone",phone);
         ParamUtil.put("password",pwdMD5);
@@ -118,6 +132,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
              */
             @Override
             public void onSuccess(String userid) {
+                dialog.dismiss();
                 SPUtil.setUsername(LoginActivity.this,mPhoneEdit.getText().toString().trim());
                 SPUtil.setPassword(LoginActivity.this,mPasswordEdit.getText().toString().trim());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -134,6 +149,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             }
         });
     }
+
 
     private void Register(){
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);

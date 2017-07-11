@@ -11,10 +11,21 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 
+import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.Class.Sick;
 import com.uestcpg.doctor.R;
 import com.uestcpg.doctor.activitys.main.SickInfoActivity;
 import com.uestcpg.doctor.adapters.SickListAdapter;
+import com.uestcpg.doctor.app.AppStatus;
+import com.uestcpg.doctor.beans.GetSickListBean;
+import com.uestcpg.doctor.network.APPUrl;
+import com.uestcpg.doctor.network.GsonHelper;
+import com.uestcpg.doctor.network.OkHttpCallBack;
+import com.uestcpg.doctor.network.OkHttpManager;
+import com.uestcpg.doctor.network.SPUtil;
+import com.uestcpg.doctor.utils.ParamUtil;
+import com.uestcpg.doctor.utils.StringUtil;
+import com.uestcpg.doctor.utils.T;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +38,15 @@ import butterknife.InjectView;
  *
  */
 
-public class FriendsListFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemClickListener{
+public class SickListFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemClickListener{
 
     @InjectView(R.id.sick_list)
     ListView mSickList;
 
     private SickListAdapter mSickAdapter;
     private List<Sick> sicks = new ArrayList<>();
-    public static FriendsListFragment getInstance(){
-        return new FriendsListFragment();
+    public static SickListFragment getInstance(){
+        return new SickListFragment();
     }
 
     @Nullable
@@ -47,27 +58,37 @@ public class FriendsListFragment extends Fragment implements View.OnClickListene
         return contentView;
     }
     private void init(){
-        Sick sick1 = new Sick();
-        sick1.setName("刘雯");
-        sick1.setDetail("近视一期有待观察患者");
-        Sick sick2 = new Sick();
-        sick2.setName("张将");
-        sick2.setDetail("胃炎一期有待观察患者");
-        sicks.add(sick1);
-        sicks.add(sick2);
         mSickAdapter = new SickListAdapter(getActivity(),sicks);
         mSickList.setAdapter(mSickAdapter);
         mSickList.setOnItemClickListener(this);
+        ParamUtil.put("token",AppStatus.getToken());
+        ParamUtil.put("phone", SPUtil.getUsername(getActivity()));
+        OkHttpManager.getInstance()._postAsyn(APPUrl.GET_SICK_LIST_URL,ParamUtil.getParams(), new OkHttpCallBack() {
+            @Override
+            public void onRespone(String result) {
+                GetSickListBean bean = GsonHelper.getGson().fromJson(result,GetSickListBean.class);
+                if(StringUtil.isTrue(bean.getSuccess())){
+                    mSickAdapter.addDatas(bean.getSicks());
+                }else{
+                    T.show(getActivity(),bean.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-//            RongIM.getInstance().startPrivateChat(getActivity(),AppStatus.getTagetId(),AppStatus.getUsername());
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), SickInfoActivity.class);
+        intent.putExtra("sickPhone",sicks.get(position).getPhone());
         startActivity(intent);
     }
 }
