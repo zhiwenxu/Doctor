@@ -93,7 +93,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                     mSimpleDraweeView.setImageURI(bean.getIconUrl());
                     me_Name.setText(bean.getName());
                     me_Major.setText(bean.getMajor());
-                    me_Appellation.setText(bean.getAppllation());
+                    me_Appellation.setText(bean.getAppellation());
                 }
                 else{
                     T.show(getActivity(),bean.getMessage());

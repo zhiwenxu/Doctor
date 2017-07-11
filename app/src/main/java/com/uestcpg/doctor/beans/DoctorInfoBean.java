@@ -44,12 +44,12 @@ public class DoctorInfoBean {
         IconUrl = iconUrl;
     }
 
-    public String getAppllation() {
+    public String getAppellation() {
         return Appellation;
     }
 
-    public void setAppllation(String appllation) {
-        Appellation = appllation;
+    public void setAppellation(String appellation) {
+        Appellation = appellation;
     }
 
     public String getMajor() {
