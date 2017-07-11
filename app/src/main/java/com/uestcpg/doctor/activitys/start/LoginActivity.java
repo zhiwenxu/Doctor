@@ -132,6 +132,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
              */
             @Override
             public void onSuccess(String userid) {
+
                 dialog.dismiss();
                 SPUtil.setUsername(LoginActivity.this,mPhoneEdit.getText().toString().trim());
                 SPUtil.setPassword(LoginActivity.this,mPasswordEdit.getText().toString().trim());
