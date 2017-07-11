@@ -12,6 +12,7 @@ public class APPUrl {
     public static final String GET_SICK_LIST_URL = SERVER_URL+"getSickList";//获取病人列表
     public static final String DOCTORINFO_URL = SERVER_URL+"doctorInfo"; //显示医生资料地址
     public static final String GET_RCTOKEN_URL = SERVER_URL+"GetRCToken";//获取融云token
+    public static final String SICK_LIST_URL = SERVER_URL+"getSickList";//获得病人列表
     public static final String SICK_INFO_URL = SERVER_URL+"sickInfo";//获得病人信息
     public static final String SET_SICK_INFO_URL = SERVER_URL+"setSickInfo";//设置病人信息
     public static final String GET_DOCTOR_INFO_URL = SERVER_URL+"getDoctorInfo";//获取医生信息
