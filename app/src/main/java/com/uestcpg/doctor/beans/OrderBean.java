@@ -10,12 +10,12 @@ import java.util.List;
 
 public class OrderBean {
 
-    private List<Order> sickOrders;
+    private List<Order> doctorOrders;
     private String Success;
     private String Message;
 
     public List<Order> getOrders() {
-        return sickOrders;
+        return doctorOrders;
     }
 
 
@@ -34,7 +34,7 @@ public class OrderBean {
     public void setMessage(String message) {
         Message = message;
     }
-    public void setOrders(List<Order> sickOrders) {
-        this.sickOrders = sickOrders;
+    public void setOrders(List<Order> doctorOrders) {
+        this.doctorOrders = doctorOrders;
     }
 }
