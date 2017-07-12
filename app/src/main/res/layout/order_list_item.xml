@@ -59,7 +59,32 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
+            android:visibility="gone"
             android:background="@drawable/order_accept" />
+        <TextView
+            android:id="@+id/order_reject_btn"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@color/app_white"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/green_btn_bg"
+            android:text="拒绝"/>
+        <TextView
+            android:id="@+id/order_accept_btn"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@color/app_white"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/order_reject_btn"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/green_btn_bg"
+            android:text="接受"/>
 
     </RelativeLayout>
 </LinearLayout>

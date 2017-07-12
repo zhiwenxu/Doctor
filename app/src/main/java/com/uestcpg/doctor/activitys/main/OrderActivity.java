@@ -2,8 +2,12 @@ package com.uestcpg.doctor.activitys.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.Class.Order;
@@ -31,7 +35,7 @@ import butterknife.InjectView;
  *
  */
 
-public class OrderActivity extends BaseActivity implements View.OnClickListener{
+public class OrderActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
 
     @InjectView(R.id.order_list)
     ListView mListView;
@@ -54,6 +58,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener{
 
         mOrderListAdapter = new OrderListAdapter(this,orders);
         mListView.setAdapter(mOrderListAdapter);
+        mListView.setOnItemClickListener(this);
 
         ParamUtil.put("token", AppStatus.getToken());
         ParamUtil.put("phone",AppStatus.getUserId());
@@ -78,6 +83,20 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         if(v == mLeftIm){
             finish();
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Order order = orders.get(position);
+        if(!StringUtil.isTrue(order.getIsAccept())){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            View tipView = LayoutInflater.from(this).inflate(R.layout.order_reject_item_click_tip,null);
+            TextView tipTv = (TextView)tipView.findViewById(R.id.reject_reason);
+            tipTv.setText(order.getReason());
+            builder.setView(tipView);
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 }

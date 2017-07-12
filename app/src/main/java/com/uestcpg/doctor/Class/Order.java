@@ -8,8 +8,10 @@ public class Order {
     private String name;
     private String iconUrl;
     private String dateTime;
-    private String IsAccept;
+    private String isAccept;
     private String sickPhone;
+    private String id;
+    private String reason;
 
     public String getName() {
         return name;
@@ -36,11 +38,11 @@ public class Order {
     }
 
     public String getIsAccept() {
-        return IsAccept;
+        return isAccept;
     }
 
     public void setIsAccept(String isAccept) {
-        IsAccept = isAccept;
+        this.isAccept = isAccept;
     }
 
     public String getSickPhone() {
@@ -49,5 +51,21 @@ public class Order {
 
     public void setSickPhone(String sickPhone) {
         this.sickPhone = sickPhone;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

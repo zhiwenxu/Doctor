@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/reason_edit"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/app_edit_bg"
+        android:gravity="top"
+        android:hint="拒绝原因"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="@drawable/green_btn_bg"
+            android:textSize="14sp"
+            android:textColor="@color/app_white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text="取消"/>
+        <Button
+            android:id="@+id/commit_btn"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="@drawable/green_btn_bg"
+            android:textSize="14sp"
+            android:textColor="@color/app_white"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/cancel_btn"
+            android:text="提交"/>
+    </RelativeLayout>
+
+</LinearLayout>
