@@ -47,5 +47,6 @@
     <string name="order_accept">接受预约</string>
     <string name="order_reject">拒绝预约</string>
     <string name="loginning_tip">登录中...</string>
+    <string name="reject_reason_null_tip">拒绝原因不能为空</string>
 
 </resources>

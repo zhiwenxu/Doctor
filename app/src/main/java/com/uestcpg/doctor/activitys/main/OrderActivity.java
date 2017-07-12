@@ -89,6 +89,9 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Order order = orders.get(position);
+        if(StringUtil.isEmpty(order.getIsAccept())){
+            return;
+        }
         if(!StringUtil.isTrue(order.getIsAccept())){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             View tipView = LayoutInflater.from(this).inflate(R.layout.order_reject_item_click_tip,null);

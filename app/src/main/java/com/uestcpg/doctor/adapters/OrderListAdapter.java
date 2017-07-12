@@ -22,6 +22,7 @@ import com.uestcpg.doctor.network.OkHttpCallBack;
 import com.uestcpg.doctor.network.OkHttpManager;
 import com.uestcpg.doctor.utils.ParamUtil;
 import com.uestcpg.doctor.utils.StringUtil;
+import com.uestcpg.doctor.utils.T;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -160,6 +161,10 @@ public class OrderListAdapter extends BaseAdapter{
                 commitBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if(StringUtil.isEmpty(reasonEdit.getText().toString())){
+                            T.show(mContext,mContext.getString(R.string.reject_reason_null_tip));
+                            return;
+                        }
                         ParamUtil.put("id",order.getId());
                         ParamUtil.put("token", AppStatus.getToken());
                         ParamUtil.put("isAccept","false");
