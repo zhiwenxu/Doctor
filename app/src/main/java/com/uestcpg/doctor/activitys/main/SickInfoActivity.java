@@ -6,10 +6,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.R;
+import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.app.BaseActivity;
+import com.uestcpg.doctor.beans.SickInfoBean;
 import com.uestcpg.doctor.network.APPUrl;
+import com.uestcpg.doctor.network.GsonHelper;
+import com.uestcpg.doctor.network.OkHttpCallBack;
 import com.uestcpg.doctor.network.OkHttpManager;
+import com.uestcpg.doctor.utils.ParamUtil;
+import com.uestcpg.doctor.utils.StringUtil;
+import com.uestcpg.doctor.utils.T;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -42,7 +50,32 @@ public class SickInfoActivity extends BaseActivity implements View.OnClickListen
         setCenterTv("病人资料");
         mLeftIm.setOnClickListener(this);
         sickPhone = getIntent().getStringExtra("sickPhone");
+        ParamUtil.put("token", AppStatus.getToken());
+        ParamUtil.put("phone",sickPhone);
 //        OkHttpManager.getInstance()._postAsyn(APPUrl);
+        OkHttpManager.getInstance()._postAsyn(APPUrl.SICK_INFO_URL, ParamUtil.getParams(), new OkHttpCallBack() {
+            @Override
+            public void onRespone(String result) {
+                SickInfoBean bean = GsonHelper.getGson().fromJson(result,SickInfoBean.class);
+
+                if(StringUtil.isTrue(bean.getSuccess())){
+                    mSickNameTv.setText(bean.getName());
+                    mSickDetailTv.setText(bean.getDesception());
+                    mSimpleDraweeView.setImageURI(bean.getIconUrl());
+                }
+                else{
+                    T.show(SickInfoActivity.this,bean.getMessage());
+                }
+
+            }
+
+
+
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+        });
     }
 
     @Override
