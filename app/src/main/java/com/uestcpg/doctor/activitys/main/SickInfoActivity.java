@@ -1,9 +1,11 @@
 package com.uestcpg.doctor.activitys.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -36,6 +38,8 @@ public class SickInfoActivity extends BaseActivity implements View.OnClickListen
     @InjectView(R.id.sick_detail)
     TextView mSickDetailTv;
     private String sickPhone;
+    @InjectView(R.id.sick_record_layout)
+    RelativeLayout mSickRecordLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +87,10 @@ public class SickInfoActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         if(v == mLeftIm){
             finish();
+        }
+        if(v == mSickRecordLayout){
+            Intent intent = new Intent(SickInfoActivity.this, SickRecordActivity.class);
+            startActivity(intent);
         }
     }
 }
