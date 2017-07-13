@@ -115,18 +115,19 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         mOrderLayout.setOnClickListener(this);
     }
 
-//    private void ChangeInfomation(){
-//        Intent intent = new Intent(getActivity(), MeFragmentChange.class);
-//        intent.putExtra("name",mName.getText().toString());
-//        intent.putExtra("description",mDescription.getText().toString());
-//        startActivity(intent);
-//    }
+    private void ChangeInfomation(){
+        Intent intent = new Intent(getActivity(), MeFragmentChange.class);
+        intent.putExtra("name",me_Name.getText().toString());
+        intent.putExtra("appellation",me_Appellation.getText().toString());
+        intent.putExtra("major",me_Major.getText().toString());
+        startActivity(intent);
+    }
 
     @Override
     public void onClick(View v) {
-//        if(v == mDoctorInfoLayout){
-//            ChangeInfomation();
-//        }
+        if(v == mDoctorInfoLayout){
+            ChangeInfomation();
+        }
         if(v == mOrderLayout){
             Intent intent = new Intent(getActivity(), OrderActivity.class);
             startActivity(intent);
