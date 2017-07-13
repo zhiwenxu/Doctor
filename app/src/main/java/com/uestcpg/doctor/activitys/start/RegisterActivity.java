@@ -13,6 +13,7 @@ import com.uestcpg.doctor.network.APPUrl;
 import com.uestcpg.doctor.network.GsonHelper;
 import com.uestcpg.doctor.network.OkHttpCallBack;
 import com.uestcpg.doctor.network.OkHttpManager;
+import com.uestcpg.doctor.network.SPUtil;
 import com.uestcpg.doctor.utils.MD5Util;
 import com.uestcpg.doctor.utils.ParamUtil;
 import com.uestcpg.doctor.utils.StringUtil;
@@ -56,8 +57,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private void Register(){
 
-        String pwd = rPasswordEdit.getText().toString();
-        String phone = rPhoneEdit.getText().toString();
+        final String pwd = rPasswordEdit.getText().toString();
+        final String phone = rPhoneEdit.getText().toString();
         String name = rNameEdit.getText().toString();
         String appellation = rappellationEdit.getText().toString();
         String major = rMajorEdit.getText().toString();
@@ -95,8 +96,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onRespone(String result) {
                 RegisterBean bean = GsonHelper.getGson().fromJson(result,RegisterBean.class);
+                if(StringUtil.isTrue(bean.getSuccess())){
+                    SPUtil.setUsername(RegisterActivity.this,phone);
+                    SPUtil.setPassword(RegisterActivity.this,pwd);
+                    finish();
+                }
                 T.show(RegisterActivity.this,bean.getMessage());
-                finish();
             }
             @Override
             public void onError(Request request, Exception e) {

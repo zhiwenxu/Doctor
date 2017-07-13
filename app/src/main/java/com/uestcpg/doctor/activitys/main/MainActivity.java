@@ -128,7 +128,7 @@ public class MainActivity extends BaseFragmentActivity implements ViewPager.OnPa
             case 1:
                 mFriendIm.setBackgroundResource(R.drawable.home_tab_sick_down);
                 mFriendsTv.setTextColor(getResources().getColor(R.color.app_common_color_green));
-                setCenterTv("医生");
+                setCenterTv("病人");
                 break;
             case 2:
                 mMeIm.setBackgroundResource(R.drawable.home_tab_me_down);

@@ -10,6 +10,7 @@ import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.R;
 import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.app.BaseActivity;
+import com.uestcpg.doctor.beans.RespondBean;
 import com.uestcpg.doctor.network.APPUrl;
 import com.uestcpg.doctor.network.GsonHelper;
 import com.uestcpg.doctor.network.OkHttpCallBack;
@@ -97,7 +98,7 @@ public class MeFragmentChange extends BaseActivity implements View.OnClickListen
         ParamUtil.put("appellation",appellation);
         ParamUtil.put("major",major);
 
-        OkHttpManager.getInstance()._postAsyn(APPUrl.SET_SICK_INFO_URL,ParamUtil.getParams(), new OkHttpCallBack() {
+        OkHttpManager.getInstance()._postAsyn(APPUrl.SET_DOCTOR_URL,ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
                 RespondBean bean = GsonHelper.getGson().fromJson(result, RespondBean.class);

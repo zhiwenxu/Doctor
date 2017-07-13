@@ -57,7 +57,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_me,null);
-      ButterKnife.inject(this,contentView);
+        ButterKnife.inject(this,contentView);
         init();
         return contentView;
     }
@@ -100,9 +100,6 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                 }
 
             }
-
-
-
             @Override
             public void onError(Request request, Exception e) {
 

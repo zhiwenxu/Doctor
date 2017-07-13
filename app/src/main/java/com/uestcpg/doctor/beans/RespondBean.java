@@ -1,13 +1,13 @@
 package com.uestcpg.doctor.beans;
 
 /**
- * Created by dmsoft on 2017/6/19.
+ * Created by dmsoft on 2017/7/5.
  */
 
-public class RegisterBean {
+public class RespondBean {
 
-    private String Success;
-    private String Message;
+    protected String Success;
+    protected String Message;
 
     public String getSuccess() {
         return Success;

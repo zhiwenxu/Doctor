@@ -1,37 +1,36 @@
 package com.uestcpg.doctor.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.uestcpg.doctor.Class.Sick;
 import com.uestcpg.doctor.R;
-import com.uestcpg.doctor.app.AppStatus;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.rong.imkit.RongIM;
-
-
 /**
- * Created by poplx on 2017/6/21.
- *
+ * Created by dmsoft on 2017/7/12.
+ * recycleView的适配器
  */
 
-public class SickListAdapter extends BaseAdapter{
+public class SickListAdapter extends RecyclerView.Adapter<SickListAdapter.ViewHolder> {
 
-    private Context mContext;
+    private Context context;
     private List<Sick> sicks;
+    private OnRecycleViewItemListener mListener;
 
-    public SickListAdapter(Context context, List<Sick> datas) {
-        this.mContext = context;
-        this.sicks = datas;
+    public SickListAdapter(Context context, List<Sick> sicks){
+        this.context = context;
+        this.sicks = sicks;
     }
+
     //添加所有数据
     public void addDatas(List<Sick> datas){
         sicks.addAll(datas);
@@ -43,43 +42,53 @@ public class SickListAdapter extends BaseAdapter{
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        sicks.clear();
+    }
+    //设置点击事件
+    public void setOnItemClickListener(OnRecycleViewItemListener mListener){
+        this.mListener = mListener;
+    }
     @Override
-    public int getCount() {
-        return sicks.size();
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ViewHolder holder = new ViewHolder(LayoutInflater.from(context).inflate(R.layout.sick_list_item,null));
+        return holder;
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
-        ViewHolder holder = null;
-        final Sick sick = sicks.get(i);
-        if(convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.sick_list_item,null);
-            holder = new ViewHolder();
-            holder.iconImage = (SimpleDraweeView)convertView.findViewById(R.id.sick_icon);
-            holder.nameTv = (TextView)convertView.findViewById(R.id.sick_name);
-            holder.detailTv = (TextView)convertView.findViewById(R.id.sick_detail);
-            convertView.setTag(holder);
-        }else{
-            holder = (ViewHolder) convertView.getTag();
-        }
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        Sick sick = sicks.get(position);
         holder.iconImage.setImageURI(sick.getIconurl());
         holder.nameTv.setText(sick.getName());
         holder.detailTv.setText(sick.getDescription());
-        return convertView;
+        holder.mCardViewLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mListener != null){
+                    mListener.onItemClick(position);
+                }
+            }
+        });
     }
-    private class ViewHolder{
+
+    @Override
+    public int getItemCount() {
+        return sicks.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder{
+
+        RelativeLayout mCardViewLayout;
         SimpleDraweeView iconImage;
         TextView nameTv;
         TextView detailTv;
+
+        public ViewHolder(View convertView) {
+            super(convertView);
+            mCardViewLayout = (RelativeLayout)convertView.findViewById(R.id.card_view_layout);
+            iconImage = (SimpleDraweeView)convertView.findViewById(R.id.sick_icon);
+            nameTv = (TextView)convertView.findViewById(R.id.sick_name);
+            detailTv = (TextView)convertView.findViewById(R.id.sick_detail);
+        }
     }
 }

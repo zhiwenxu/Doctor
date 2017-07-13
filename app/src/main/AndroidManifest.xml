@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".activitys.main.MainActivity"/>
         <activity android:name=".activitys.main.SickInfoActivity"/>
+        <activity android:name=".fragments.tab.MeFragmentChange"/>
         <activity android:name=".activitys.main.OrderActivity"/>
         <activity android:name=".activitys.main.ConversationActivity">
             <intent-filter>

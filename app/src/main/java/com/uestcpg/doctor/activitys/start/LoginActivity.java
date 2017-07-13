@@ -62,6 +62,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mPhoneEdit.setText(SPUtil.getUsername(this));
+        mPasswordEdit.setText(SPUtil.getPassWord(this));
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         if(dialog.isShowing()){
@@ -72,8 +79,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private void init(){
         ButterKnife.inject(this);
         dialog = new LoadingDialog(this);
-        mPhoneEdit.setText(SPUtil.getUsername(this));
-        mPasswordEdit.setText(SPUtil.getPassWord(this));
         mLoginBtn.setOnClickListener(this);
         mLoginRegisterBtn.setOnClickListener(this);
         dialog.setTip(getString(R.string.loginning_tip));
