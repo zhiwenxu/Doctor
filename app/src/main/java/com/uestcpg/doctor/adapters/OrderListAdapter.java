@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import java.util.List;
 
 /**
  * Created by dmsoft on 2017/7/5.
+ *
  */
 
 public class OrderListAdapter extends BaseAdapter{
@@ -156,6 +158,7 @@ public class OrderListAdapter extends BaseAdapter{
                 final EditText reasonEdit = (EditText)view.findViewById(R.id.reason_edit);
                 Button commitBtn = (Button)view.findViewById(R.id.commit_btn);
                 Button cancelBtn = (Button)view.findViewById(R.id.cancel_btn);
+                final CheckBox checkBox = (CheckBox)view.findViewById(R.id.reason_check_btn);
                 builder.setView(view);
                 final AlertDialog dialog = builder.create();
                 commitBtn.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +167,9 @@ public class OrderListAdapter extends BaseAdapter{
                         if(StringUtil.isEmpty(reasonEdit.getText().toString())){
                             T.show(mContext,mContext.getString(R.string.reject_reason_null_tip));
                             return;
+                        }
+                        if(checkBox.isChecked()){
+                            ParamUtil.put("blackList","true");
                         }
                         ParamUtil.put("id",order.getId());
                         ParamUtil.put("token", AppStatus.getToken());

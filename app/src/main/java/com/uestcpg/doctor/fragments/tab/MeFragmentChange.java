@@ -2,6 +2,7 @@ package com.uestcpg.doctor.fragments.tab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -101,6 +102,7 @@ public class MeFragmentChange extends BaseActivity implements View.OnClickListen
         OkHttpManager.getInstance()._postAsyn(APPUrl.SET_DOCTOR_URL,ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
+                Log.e("re",result);
                 RespondBean bean = GsonHelper.getGson().fromJson(result, RespondBean.class);
                 if(StringUtil.isTrue(bean.getSuccess())){
                     finish();

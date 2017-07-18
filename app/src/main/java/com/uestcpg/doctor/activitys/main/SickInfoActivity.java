@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,9 +25,11 @@ import com.uestcpg.doctor.utils.T;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.rong.imkit.RongIM;
 
 /**
  * Created by dmsoft on 2017/6/29.
+ *
  */
 
 public class SickInfoActivity extends BaseActivity implements View.OnClickListener{
@@ -40,6 +43,8 @@ public class SickInfoActivity extends BaseActivity implements View.OnClickListen
     private String sickPhone;
     @InjectView(R.id.sick_record_layout)
     RelativeLayout mSickRecordLayout;
+    @InjectView(R.id.doctor_send_btn)
+    Button mDoctorSendBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,10 +59,11 @@ public class SickInfoActivity extends BaseActivity implements View.OnClickListen
         setLeftIm(R.drawable.left_arrow);
         setCenterTv("病人资料");
         mLeftIm.setOnClickListener(this);
+        mSickRecordLayout.setOnClickListener(this);
+        mDoctorSendBtn.setOnClickListener(this);
         sickPhone = getIntent().getStringExtra("sickPhone");
         ParamUtil.put("token", AppStatus.getToken());
         ParamUtil.put("phone",sickPhone);
-//        OkHttpManager.getInstance()._postAsyn(APPUrl);
         OkHttpManager.getInstance()._postAsyn(APPUrl.SICK_INFO_URL, ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
@@ -71,10 +77,7 @@ public class SickInfoActivity extends BaseActivity implements View.OnClickListen
                 else{
                     T.show(SickInfoActivity.this,bean.getMessage());
                 }
-
             }
-
-
 
             @Override
             public void onError(Request request, Exception e) {
@@ -91,6 +94,9 @@ public class SickInfoActivity extends BaseActivity implements View.OnClickListen
         if(v == mSickRecordLayout){
             Intent intent = new Intent(SickInfoActivity.this, SickRecordActivity.class);
             startActivity(intent);
+        }
+        if(v == mDoctorSendBtn){
+            RongIM.getInstance().startPrivateChat(this,sickPhone,"病人");
         }
     }
 }

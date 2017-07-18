@@ -171,7 +171,7 @@
             </RelativeLayout>
 
             <Button
-                android:id="@+id/sick_send_btn"
+                android:id="@+id/doctor_send_btn"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="20dp"

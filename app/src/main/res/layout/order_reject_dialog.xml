@@ -2,16 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="拒绝原因"/>
     <EditText
         android:id="@+id/reason_edit"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:padding="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/app_edit_bg"
-        android:gravity="top"
-        android:hint="拒绝原因"/>
+        android:gravity="top" />
+    <CheckBox
+        android:id="@+id/reason_check_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_color_gray"
+        android:text="不再接收他的预约"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"

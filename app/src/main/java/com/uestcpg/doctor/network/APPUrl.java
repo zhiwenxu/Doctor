@@ -14,7 +14,7 @@ public class APPUrl {
     public static final String GET_RCTOKEN_URL = SERVER_URL+"GetRCToken";//获取融云token
     public static final String SICK_LIST_URL = SERVER_URL+"getSickList";//获得病人列表
     public static final String SICK_INFO_URL = SERVER_URL+"sickInfo";//获得病人信息
-    public static final String SET_DOCTOR_URL = SERVER_URL+"setDoctor";//设置病人信息
+    public static final String SET_DOCTOR_URL = SERVER_URL+"setDoctorInfo";//设置病人信息
     public static final String GET_DOCTOR_INFO_URL = SERVER_URL+"getDoctorInfo";//获取医生信息
     public static final String ORDER_YY_URL = SERVER_URL+"orderYy";//发起预约
     public static final String GET_OREDER_URL = SERVER_URL+"sickOrder";//获取预约信息
