@@ -49,4 +49,8 @@
     <string name="loginning_tip">登录中...</string>
     <string name="reject_reason_null_tip">拒绝原因不能为空</string>
 
+    <string name="treatment">治疗或建议方案</string>
+    <string name="treatment_btn">发给病人</string>
+    <string name="treatment_null_tip">治疗或建议方案不能为空</string>
+
 </resources>
