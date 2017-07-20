@@ -26,4 +26,12 @@ public class StringUtil {
         }
         return false;
     }
+
+    //将null或者“null”转成空
+    public static String null2Empty(String str){
+        if(isEmpty(str)){
+            return "";
+        }
+        return str;
+    }
 }

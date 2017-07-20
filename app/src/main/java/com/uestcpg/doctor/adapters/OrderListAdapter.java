@@ -116,18 +116,18 @@ public class OrderListAdapter extends BaseAdapter{
             viewHolder.tagImage.setBackgroundResource(R.drawable.order_wait);
             viewHolder.acceptBtn.setVisibility(View.VISIBLE);
             viewHolder.rejectBtn.setVisibility(View.VISIBLE);
-            viewHolder.tagImage.setVisibility(View.GONE);
+            viewHolder.tagImage.setVisibility(View.INVISIBLE);
         }else if(StringUtil.isTrue(accept)){
             viewHolder.acceptTv.setText(R.string.order_accept);
             viewHolder.tagImage.setBackgroundResource(R.drawable.order_accept);
-            viewHolder.acceptBtn.setVisibility(View.GONE);
-            viewHolder.rejectBtn.setVisibility(View.GONE);
+            viewHolder.acceptBtn.setVisibility(View.INVISIBLE);
+            viewHolder.rejectBtn.setVisibility(View.INVISIBLE);
             viewHolder.tagImage.setVisibility(View.VISIBLE);
         }else if(!StringUtil.isTrue(accept)){
             viewHolder.acceptTv.setText(R.string.order_reject);
             viewHolder.tagImage.setBackgroundResource(R.drawable.order_reject);
-            viewHolder.acceptBtn.setVisibility(View.GONE);
-            viewHolder.rejectBtn.setVisibility(View.GONE);
+            viewHolder.acceptBtn.setVisibility(View.INVISIBLE);
+            viewHolder.rejectBtn.setVisibility(View.INVISIBLE);
             viewHolder.tagImage.setVisibility(View.VISIBLE);
         }
 
@@ -135,7 +135,6 @@ public class OrderListAdapter extends BaseAdapter{
         viewHolder.detailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 Intent intent = new Intent(mContext,ReservationInfoActivity.class);
                 intent.putExtra("name",order.getSickName());

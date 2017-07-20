@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.R;
@@ -34,27 +35,27 @@ public class ReservationInfoActivity extends BaseActivity implements View.OnClic
     @InjectView(R.id.reservation_confirm_btn)
     Button Reservation_confirm_Btn;
     @InjectView(R.id.reservation_name)
-    EditText Reservation_Name;
+    TextView Reservation_Name;
     @InjectView(R.id.reservation_sex)
-    EditText Reservation_Sex;
+    TextView Reservation_Sex;
     @InjectView(R.id.reservation_old)
-    EditText Reservation_Old;
+    TextView Reservation_Old;
     @InjectView(R.id.reservation_career)
-    EditText Reservation_Career;
+    TextView Reservation_Career;
     @InjectView(R.id.reservation_height)
-    EditText Reservation_Height;
+    TextView Reservation_Height;
     @InjectView(R.id.reservation_weight)
-    EditText Reservation_Weight;
+    TextView Reservation_Weight;
     @InjectView(R.id.reservation_current_symptom)
-    EditText Reservation_Current_Symptom;
+    TextView Reservation_Current_Symptom;
     @InjectView(R.id.reservation_begin_sick_time)
-    EditText Reservation_Begin_Sick_Time;
+    TextView Reservation_Begin_Sick_Time;
     @InjectView(R.id.reservation_taken_treatment)
-    EditText Reservation_Taken_Treatment;
+    TextView Reservation_Taken_Treatment;
     @InjectView(R.id.reservation_taken_place)
-    EditText Reservation_Taken_Place;
+    TextView Reservation_Taken_Place;
     @InjectView(R.id.reservation_doctor_suggest)
-    EditText Reservation_Doctor_Suggest;
+    TextView Reservation_Doctor_Suggest;
 
     private String Rname;
     private String Rsex;
@@ -77,6 +78,10 @@ public class ReservationInfoActivity extends BaseActivity implements View.OnClic
         init();
     }
     private void init(){
+
+        initTitle();
+        setCenterTv("病历详情");
+
         Rname = getIntent().getStringExtra("name");
         Rsex = getIntent().getStringExtra("sex");
         Rold = getIntent().getStringExtra("old");
@@ -91,25 +96,22 @@ public class ReservationInfoActivity extends BaseActivity implements View.OnClic
         ButterKnife.inject(this);
         Reservation_confirm_Btn.setOnClickListener(this);
         Reservation();
-        Log.i("A123",Rname);
     }
 
 
     private void Reservation(){
 
-        Reservation_Name.setText(Rname);
-        Reservation_Sex.setText(Rsex);
-        Reservation_Old.setText(Rold);
-        Reservation_Career.setText(Rcareer);
-        Reservation_Height.setText(Rheight);
-        Reservation_Weight.setText(Rweight);
-        Reservation_Current_Symptom.setText(Rcurrent_symptom);
-        Reservation_Begin_Sick_Time.setText(Rbegin_sick_time);
-        Reservation_Taken_Treatment.setText(Rtaken_treatment);
-        Reservation_Taken_Place.setText(Rtaken_place);
-        Reservation_Doctor_Suggest.setText(Rdoctor_suggest);
-
-
+        Reservation_Name.setText(StringUtil.null2Empty(Rname));
+        Reservation_Sex.setText(StringUtil.null2Empty(Rsex));
+        Reservation_Old.setText(StringUtil.null2Empty(Rold));
+        Reservation_Career.setText(StringUtil.null2Empty(Rcareer));
+        Reservation_Height.setText(StringUtil.null2Empty(Rheight));
+        Reservation_Weight.setText(StringUtil.null2Empty(Rweight));
+        Reservation_Current_Symptom.setText(StringUtil.null2Empty(Rcurrent_symptom));
+        Reservation_Begin_Sick_Time.setText(StringUtil.null2Empty(Rbegin_sick_time));
+        Reservation_Taken_Treatment.setText(StringUtil.null2Empty(Rtaken_treatment));
+        Reservation_Taken_Place.setText(StringUtil.null2Empty(Rtaken_place));
+        Reservation_Doctor_Suggest.setText(StringUtil.null2Empty(Rdoctor_suggest));
 
     }
     @Override
