@@ -1,6 +1,7 @@
 package com.uestcpg.doctor.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,10 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.Class.Order;
 import com.uestcpg.doctor.R;
+import com.uestcpg.doctor.activitys.main.OrderActivity;
+import com.uestcpg.doctor.activitys.main.ReservationInfoActivity;
+import com.uestcpg.doctor.activitys.start.LoginActivity;
+import com.uestcpg.doctor.activitys.start.RegisterActivity;
 import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.network.APPUrl;
 import com.uestcpg.doctor.network.OkHttpCallBack;
@@ -85,6 +90,7 @@ public class OrderListAdapter extends BaseAdapter{
             viewHolder.tagImage = (ImageView) convertView.findViewById(R.id.order_accept_icon);
             viewHolder.acceptBtn = (TextView) convertView.findViewById(R.id.order_accept_btn);
             viewHolder.rejectBtn = (TextView) convertView.findViewById(R.id.order_reject_btn);
+            viewHolder.detailBtn = (TextView) convertView.findViewById(R.id.order_detail_btn);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
@@ -124,6 +130,29 @@ public class OrderListAdapter extends BaseAdapter{
             viewHolder.rejectBtn.setVisibility(View.GONE);
             viewHolder.tagImage.setVisibility(View.VISIBLE);
         }
+
+        //点击详情
+        viewHolder.detailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(mContext,ReservationInfoActivity.class);
+                intent.putExtra("name",order.getSickName());
+                intent.putExtra("sex",order.getSickSex());
+                intent.putExtra("old",order.getSickAge());
+                intent.putExtra("career",order.getSickWork());
+                intent.putExtra("height",order.getSickHeight());
+                intent.putExtra("weight",order.getSickWeight());
+                intent.putExtra("current_symptom",order.getSickZz());
+                intent.putExtra("begin_sick_time",order.getSickFbTime());
+                intent.putExtra("taken_treatment",order.getSickZl());
+                intent.putExtra("taken_place",order.getSickAddrJy());
+                intent.putExtra("doctor_suggest",order.getDoctorSuggest());
+
+                mContext.startActivity(intent);
+            }
+        });
 
         //点击接受
         viewHolder.acceptBtn.setOnClickListener(new View.OnClickListener() {
@@ -215,5 +244,7 @@ public class OrderListAdapter extends BaseAdapter{
         ImageView tagImage;
         TextView acceptBtn;
         TextView rejectBtn;
+        TextView detailBtn;
+
     }
 }

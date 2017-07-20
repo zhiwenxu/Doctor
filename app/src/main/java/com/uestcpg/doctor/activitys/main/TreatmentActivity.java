@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.R;
 import com.uestcpg.doctor.activitys.start.RegisterActivity;
+import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.app.BaseActivity;
 import com.uestcpg.doctor.beans.RegisterBean;
 import com.uestcpg.doctor.network.APPUrl;
@@ -58,24 +59,24 @@ public class TreatmentActivity extends BaseActivity implements View.OnClickListe
         }
 
         ParamUtil.put("doctor","true");
-//
-//        OkHttpManager.getInstance()._postAsyn(APPUrl.REGISTER_URL,ParamUtil.getParams()
-//                , new OkHttpCallBack() {
-//                    @Override
-//                    public void onRespone(String result) {
-//                        RegisterBean bean = GsonHelper.getGson().fromJson(result,RegisterBean.class);
-//                        if(StringUtil.isTrue(bean.getSuccess())){
-//                            SPUtil.setUsername(RegisterActivity.this,phone);
-//                            SPUtil.setPassword(RegisterActivity.this,pwd);
-//                            finish();
-//                        }
-//                        T.show(RegisterActivity.this,bean.getMessage());
-//                    }
-//                    @Override
-//                    public void onError(Request request, Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                });
+        ParamUtil.put("id",AppStatus.getUserId());
+        ParamUtil.put("token", AppStatus.getToken());
+        ParamUtil.put("isAccept","true");
+        ParamUtil.put("doctorPhone",AppStatus.getUserId());
+        ParamUtil.put("sickPhone","15108307486");
+        ParamUtil.put("doctorName",AppStatus.getUsername());
+        OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTOR_SET_ORDER_URL,ParamUtil.getParams(), new OkHttpCallBack() {
+            @Override
+            public void onRespone(String result) {
+                T.show(TreatmentActivity.this,"true");
+                finish();
+            }
+
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+        });
 
     }
     @Override

@@ -17,6 +17,7 @@ import com.squareup.okhttp.Request;
 import com.uestcpg.doctor.R;
 import com.uestcpg.doctor.activitys.main.OrderActivity;
 import com.uestcpg.doctor.activitys.main.SickRecordActivity;
+import com.uestcpg.doctor.activitys.main.TreatmentActivity;
 import com.uestcpg.doctor.app.AppStatus;
 import com.uestcpg.doctor.beans.DoctorInfoBean;
 import com.uestcpg.doctor.network.APPUrl;
@@ -51,6 +52,10 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     RelativeLayout mOrderLayout;
     @InjectView(R.id.my_sick_record_layout)
     RelativeLayout mSickRecordLayout;
+
+    @InjectView(R.id.Doctor_treatment_btn)
+    RelativeLayout Doctor_treatment_btn;
+
 
     public static MeFragment getInstance(){
         return new MeFragment();
@@ -135,6 +140,10 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         }
         if(v == mSickRecordLayout){
             Intent intent = new Intent(getActivity(), SickRecordActivity.class);
+            startActivity(intent);
+        }
+        if(v == Doctor_treatment_btn){
+            Intent intent = new Intent(getActivity(), TreatmentActivity.class);
             startActivity(intent);
         }
     }
