@@ -1,6 +1,7 @@
 package com.uestcpg.doctor.fragments.tab;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +38,15 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * Created by dmsoft on 2017/6/14.
  *
  */
 
-public class SickListFragment extends Fragment implements View.OnClickListener{
-
+public class SickListFragment extends Fragment implements View.OnClickListener, RongIM.UserInfoProvider{
     @InjectView(R.id.sick_list)
     RecyclerView mSickList;
 
@@ -83,7 +86,9 @@ public class SickListFragment extends Fragment implements View.OnClickListener{
                 getSickList();
             }
         });
+        RongIM.setUserInfoProvider(this,true);
         getSickList();
+
     }
 
 
@@ -95,6 +100,7 @@ public class SickListFragment extends Fragment implements View.OnClickListener{
     private void getSickList(){
         ParamUtil.put("token",AppStatus.getToken());
         ParamUtil.put("phone", SPUtil.getUsername(getActivity()));
+
         OkHttpManager.getInstance()._postAsyn(APPUrl.GET_SICK_LIST_URL,ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
@@ -113,4 +119,17 @@ public class SickListFragment extends Fragment implements View.OnClickListener{
             }
         });
     }
+
+    @Override
+    public UserInfo getUserInfo(String s) {
+
+        for(Sick sick : sicks){
+            return new UserInfo(sick.getPhone(),sick.getName(), Uri.parse(sick.getIconurl()));
+        }
+        if(AppStatus.getUsername() != null){
+            return new UserInfo(AppStatus.getUserId(),AppStatus.getUsername(),Uri.parse(AppStatus.getUrl()));
+        }
+        return null;
+    }
+
 }

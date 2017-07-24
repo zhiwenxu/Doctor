@@ -1,6 +1,7 @@
 package com.uestcpg.doctor.fragments.tab;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,8 @@ import com.uestcpg.doctor.utils.T;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * Created by dmsoft on 2017/6/14.
@@ -55,7 +58,6 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
     @InjectView(R.id.Doctor_treatment_btn)
     RelativeLayout Doctor_treatment_btn;
-
 
     public static MeFragment getInstance(){
         return new MeFragment();
@@ -94,10 +96,10 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onRespone(String result) {
                 DoctorInfoBean bean = GsonHelper.getGson().fromJson(result,DoctorInfoBean.class);
-
                 if(StringUtil.isTrue(bean.getSuccess())){
-                    bean.getIconUrl();
                     AppStatus.setUsername(bean.getName());
+                    AppStatus.setUrl(bean.getIconUrl());
+                    RongIM.getInstance().refreshUserInfoCache(new UserInfo(AppStatus.getUserId(), bean.getName(), Uri.parse(bean.getIconUrl())));
                     mSimpleDraweeView.setImageURI(bean.getIconUrl());
                     me_Name.setText(bean.getName());
                     me_Major.setText(bean.getMajor());

@@ -9,6 +9,8 @@ public class AppStatus {
     private static String token;
     private static String username;
     private static String rCToken;
+    private static String url;
+    private static String targetId;
 
     public static void setUserId(String id){
         userid = id;
@@ -39,5 +41,21 @@ public class AppStatus {
 
     public static void setrCToken(String rCToken) {
         AppStatus.rCToken = rCToken;
+    }
+
+    public static String getUrl() {
+        return url;
+    }
+
+    public static void setUrl(String url) {
+        AppStatus.url = url;
+    }
+
+    public static String getTargetId() {
+        return targetId;
+    }
+
+    public static void setTargetId(String targetId) {
+        AppStatus.targetId = targetId;
     }
 }

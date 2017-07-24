@@ -59,6 +59,8 @@ public class TreatmentActivity extends BaseActivity implements View.OnClickListe
         }
 
         ParamUtil.put("doctorSuggest",doctor_suggest);
+        ParamUtil.put("sickPhone",AppStatus.getTargetId());
+        ParamUtil.put("doctorPhone",AppStatus.getUserId());
         ParamUtil.put("token",AppStatus.getToken());
         OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTOR_SEND_MEDICAL_URL,ParamUtil.getParams(), new OkHttpCallBack() {
             @Override

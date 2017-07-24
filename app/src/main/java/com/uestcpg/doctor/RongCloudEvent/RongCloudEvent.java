@@ -8,6 +8,8 @@ import java.util.List;
 import io.rong.imkit.DefaultExtensionModule;
 import io.rong.imkit.IExtensionModule;
 import io.rong.imkit.RongExtensionManager;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 
 /**
  * Created by dmsoft on 2017/6/30.
@@ -31,4 +33,5 @@ public class RongCloudEvent {
             }
         }
     }
+
 }

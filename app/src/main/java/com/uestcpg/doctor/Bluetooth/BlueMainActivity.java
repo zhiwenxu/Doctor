@@ -10,6 +10,7 @@ import com.uestcpg.doctor.R;
 import com.uestcpg.doctor.activitys.main.TreatmentActivity;
 import com.uestcpg.doctor.app.BaseActivity;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
@@ -24,6 +25,8 @@ public class BlueMainActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
+        ButterKnife.inject(this);
+        TreatmentBtn.setOnClickListener(this);
     }
 
 
