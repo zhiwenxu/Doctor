@@ -32,8 +32,8 @@ import butterknife.InjectView;
 public class TreatmentActivity extends BaseActivity implements View.OnClickListener {
     @InjectView(R.id.treatment_btn)
     Button Treatment_Btn;
-    @InjectView(R.id.treatment)
-    EditText Treatment;
+    @InjectView(R.id.doctor_suggest)
+    EditText Doctor_Suggest;
 
 
 
@@ -50,22 +50,17 @@ public class TreatmentActivity extends BaseActivity implements View.OnClickListe
 
     private void Treatment(){
 
-        final String treatment = Treatment.getText().toString();
+        final String doctor_suggest = Doctor_Suggest.getText().toString();
 
 
-        if(StringUtil.isEmpty(treatment)){
-            T.show(this,getString(R.string.account_null_tip));
+        if(StringUtil.isEmpty(doctor_suggest)){
+            T.show(this,getString(R.string.doctor_suggest_null_tip));
             return;
         }
 
-        ParamUtil.put("doctor","true");
-        ParamUtil.put("id",AppStatus.getUserId());
-        ParamUtil.put("token", AppStatus.getToken());
-        ParamUtil.put("isAccept","true");
-        ParamUtil.put("doctorPhone",AppStatus.getUserId());
-        ParamUtil.put("sickPhone","15108307486");
-        ParamUtil.put("doctorName",AppStatus.getUsername());
-        OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTOR_SET_ORDER_URL,ParamUtil.getParams(), new OkHttpCallBack() {
+        ParamUtil.put("doctorSuggest",doctor_suggest);
+        ParamUtil.put("token",AppStatus.getToken());
+        OkHttpManager.getInstance()._postAsyn(APPUrl.DOCTOR_SEND_MEDICAL_URL,ParamUtil.getParams(), new OkHttpCallBack() {
             @Override
             public void onRespone(String result) {
                 T.show(TreatmentActivity.this,"true");

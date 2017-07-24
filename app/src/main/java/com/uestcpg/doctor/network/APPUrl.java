@@ -21,5 +21,5 @@ public class APPUrl {
     public static final String CHECK_ORDER_URL = SERVER_URL+"sickCheckOrder";//获取预约信息
     public static final String DOCTOR_ORDER_URL = SERVER_URL+"doctorOrder";//获取预约的病人
     public static final String DOCTOR_SET_ORDER_URL = SERVER_URL+"setOrder";//医生设置预约情况
-
+    public static final String DOCTOR_SEND_MEDICAL_URL = SERVER_URL+"doctorSendMedical";//医生设置预约情况
 }

@@ -7,7 +7,7 @@
 
 
     <EditText
-        android:id="@+id/treatment"
+        android:id="@+id/doctor_suggest"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@drawable/app_edit_bg"

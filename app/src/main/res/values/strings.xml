@@ -75,4 +75,6 @@
     <string name="taken_treatment_null_tip">采取过何种治疗不能为空</string>
     <string name="taken_place_null_tip">曾在何地就医不能为空</string>
 
+    <string name="doctor_suggest_null_tip">治疗方案或者建议不能为空</string>
+
 </resources>
