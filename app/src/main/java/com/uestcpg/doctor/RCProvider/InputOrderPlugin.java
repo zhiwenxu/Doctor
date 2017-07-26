@@ -27,7 +27,7 @@ public class InputOrderPlugin implements IPluginModule {
 
     @Override
     public String obtainTitle(Context context) {
-        return "脉搏";
+        return "脉搏治疗";
     }
 
     @Override

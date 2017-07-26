@@ -77,4 +77,7 @@
 
     <string name="doctor_suggest_null_tip">治疗方案或者建议不能为空</string>
 
+    <string name="view1">①这是我们的摸脉设备，黑色的皮质的部分是您需要把手指放上去</string>
+    <string name="view2">②如图将中指食指无名指并排放在设备上即可感受病人的脉搏跳动</string>
+
 </resources>
