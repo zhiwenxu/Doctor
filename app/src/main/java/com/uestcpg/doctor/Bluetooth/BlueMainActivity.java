@@ -30,6 +30,7 @@ import com.uestcpg.doctor.Bluetooth.common.logger.MessageOnlyLogFilter;
 
 /**
  * Created by poplx on 2017/7/20.
+ *
  */
 
 public class BlueMainActivity extends SampleActivityBase implements View.OnClickListener{
