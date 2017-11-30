@@ -27,9 +27,13 @@ public interface Constants {
     public static final int MESSAGE_WRITE = 3;
     public static final int MESSAGE_DEVICE_NAME = 4;
     public static final int MESSAGE_TOAST = 5;
+    public static final int RESTART = 6;
 
     // Key names received from the BluetoothChatService Handler
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
 
+    public static boolean SOCKET_ESTABLISHED = false;
+
+//    public static int SOCKET2_ESTABLISHED = 0;
 }
