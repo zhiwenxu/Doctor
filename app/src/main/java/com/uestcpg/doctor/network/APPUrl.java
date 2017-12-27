@@ -6,9 +6,9 @@ package com.uestcpg.doctor.network;
  */
 
 public class APPUrl {
-    private static final String SERVER_URL = "http://1750q5u152.iask.in:30038/RemoteDoctorServer/";
+    private static final String SERVER_URL = "http://39.108.146.238/RemoteDoctor/";
     public static final String REGISTER_URL = SERVER_URL+"register";  //注册地址
-    public static final String LOGIN_URL = SERVER_URL+"login"; //登录地址
+    public static final String LOGIN_URL = SERVER_URL+"login"; //登录地址1
     public static final String GET_SICK_LIST_URL = SERVER_URL+"getSickList";//获取病人列表
     public static final String DOCTORINFO_URL = SERVER_URL+"doctorInfo"; //显示医生资料地址
     public static final String GET_RCTOKEN_URL = SERVER_URL+"GetRCToken";//获取融云token
