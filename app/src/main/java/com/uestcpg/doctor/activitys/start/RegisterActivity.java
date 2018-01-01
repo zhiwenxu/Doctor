@@ -82,6 +82,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         if(StringUtil.isEmpty(major)){
             T.show(this,getString(R.string.major_null_tip));
             return;
+
         }
         String pwdMD5 = MD5Util.stringMD5(pwd);
         ParamUtil.put("phone",phone);
